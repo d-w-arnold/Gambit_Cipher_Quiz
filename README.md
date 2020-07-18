@@ -5,3 +5,5 @@ These are my solutions to the Gambit Quiz, in order to apply for a job with Gamb
 https://gambitresearch.com/quiz/
 
 C++ Solution: `main.cpp`
+
+Python Solution: `main.py`

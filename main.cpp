@@ -50,6 +50,7 @@ int main() {
     for (int a = 0; a <= 255; a++) {
         for (int b = 0; b <= 255; b++) {
             for (int c = 0; c <= 255; c++) {
+                cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
                 char message[cipherSize];
                 for (int i = 0; i < cipherSize; i++) {
                     message[i] = (char) cipher[i];
@@ -71,8 +72,6 @@ int main() {
                     cout << endl << "Decrypted Message: " << str << endl;
                     cout << "Key: a = " << a << ", b = " << b << ", c = " << c << endl;
                     return 0;
-                } else {
-                    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
                 }
             }
         }
