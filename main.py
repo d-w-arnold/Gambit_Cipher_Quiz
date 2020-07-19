@@ -38,6 +38,7 @@ word_to_match = "Gambit"
 #
 # The main function is a brute-force approach (which includes checking for invalid characters) to working out the
 # ASCII values used in place of variables: a, b and c. Where we each variable can be in the range of [0,255].
+#
 def main():
     # Try all possible combinations of ASCII values for the 3 letter key (abc).
     for a in range(0, 256):
@@ -64,12 +65,12 @@ def main():
                     message_str = ""
                     for x in range(0, len(message)):
                         message_str += str(message[x])
-                    # The correct values for a, b and c will contain the wordToMatch in the decrypted plain text.
+                    # The correct values for a, b and c will contain the word_to_match in the decrypted plain text.
                     if word_to_match in message_str:
                         print("\nDecrypted Message: " + message_str)
                         print("Key: a = {0}, b = {1}, c = {2}".format(a, b, c))
                         return
-    print("\nCould not find a decryption containing: " + wordToMatch)
+    print("\nCould not find a decryption containing: " + word_to_match)
 
 
 if __name__ == '__main__':
