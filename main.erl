@@ -1,10 +1,43 @@
-#!/usr/local/bin/env escript
+-module(main).
+-export([main/0]).
 
-%% To execute, run the following command in the same directory:
+%% Solution to Gambit Quiz, in order to apply for a job with Gambit Research.
 %%
-%% $ escript main.erl
+%% https://gambitresearch.com/quiz/
 %%
-main(_) ->
+%% In the source code found at the above URL, nested within 'div.entry-content',
+%% the following JavaScript function can be found:
+%%
+%% <script type="text/javascript">
+%%   // You're on the right path!
+%%   function scramble(message, a, b, c) {
+%%     return message.split('').map((chr, i) => {
+%%       const code = chr.charCodeAt(0)
+%%       switch(i % 3) {
+%%         case 0: return (code + a) % 256
+%%         case 1: return (code + b) % 256
+%%         case 2: return (code + c) % 256
+%%       }
+%%     }).join(' ')
+%%   }
+%% </script>
+%%
+%% The cipher text displayed at the above URL is encrypted used a Vigenère (symmetric) cipher, where the key is of
+%% length 3 (made up of the variables: a, b and c), and each variable represents an ASCII value.
+%%
+%% The main function is a brute-force approach to working out the ASCII values used in place
+%% of variables: a, b and c. Where we each variable can be in the range of [0,255].
+%%
+%% To execute, run the following command in the same directory: (do not type '$')
+%%
+%% $ erl
+%%
+%% Compile the main module, and execute the main function: (do not type '>')
+%%
+%% > c(main).
+%% > main:main().
+%%
+main() ->
   Cipher = [4, 50, 180, 40, 60, 116, 220, 16, 183, 42, 52, 186, 29, 65, 189, 40, 46, 188, 37, 60, 182, 47, 237,
     174, 43, 63, 104, 47, 60, 180, 50, 54, 182, 35, 237, 188, 36, 50, 104, 3, 46, 181, 30, 54, 188, 220,
     48, 176, 29, 57, 180, 33, 59, 175, 33, 251, 104, 12, 57, 173, 29, 64, 173, 220, 64, 173, 42, 49,
@@ -20,14 +53,15 @@ main(_) ->
   Combos = [{A, B, C} || A <- lists:seq(0, 255), B <- lists:seq(0, 255), C <- lists:seq(0, 255)],
   logic(Combos, Cipher, CipherSize, WordToMatch).
 
-logic([], _, _, WordToMatch) -> io:fwrite("~nCould not find a decryption containing: ~p~n", [WordToMatch]);
+logic([], _, _, WordToMatch) -> io:fwrite("~nCould not find a decryption containing: ~p~n~n", [WordToMatch]);
 logic([{A, B, C} | Xs], Cipher, CipherSize, WordToMatch) ->
   io:fwrite("a = ~p, b = ~p, c = ~p~n", [A, B, C]),
   Message = logicHelper(0, Cipher, CipherSize, A, B, C),
   Ok = string:str(Message, WordToMatch) > 0,
   if
     Ok == true ->
-      io:fwrite("~nDecrypted Message: ~p~n~n", [Message]),
+      %% The correct values for a, b and c will contain the WordToMatch in the decrypted plain text.
+      io:fwrite("~nDecrypted Message: ~p~n", [Message]),
       io:fwrite("Key: a = ~p, b = ~p, c = ~p~n", [A, B, C]);
     true -> logic(Xs, Cipher, CipherSize, WordToMatch)
   end.

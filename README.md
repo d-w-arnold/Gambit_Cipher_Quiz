@@ -7,3 +7,5 @@ https://gambitresearch.com/quiz/
 C++ Solution: `main.cpp`
 
 Python Solution: `main.py`
+
+Erlang Solution: `main.erl`
