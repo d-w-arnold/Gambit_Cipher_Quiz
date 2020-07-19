@@ -53,7 +53,8 @@ main() ->
   Combos = [{A, B, C} || A <- lists:seq(0, 255), B <- lists:seq(0, 255), C <- lists:seq(0, 255)],
   logic(Combos, Cipher, CipherSize, WordToMatch).
 
-logic([], _, _, WordToMatch) -> io:fwrite("~nCould not find a decryption containing: ~p~n", [WordToMatch]);
+logic([], _Cipher, _CipherSize, WordToMatch) ->
+  io:fwrite("~nCould not find a decryption containing: ~p~n", [WordToMatch]);
 logic([{A, B, C} | Xs], Cipher, CipherSize, WordToMatch) ->
   io:fwrite("a = ~p, b = ~p, c = ~p~n", [A, B, C]),
   Message = logicHelper(0, Cipher, CipherSize, A, B, C),
@@ -66,7 +67,7 @@ logic([{A, B, C} | Xs], Cipher, CipherSize, WordToMatch) ->
     true -> logic(Xs, Cipher, CipherSize, WordToMatch)
   end.
 
-logicHelper(I, _, S, _, _, _) when I == S -> [];
+logicHelper(I, _Cipher, S, _A, _B, _C) when I == S -> [];
 logicHelper(I, [Ci | Cis], S, A, B, C) when I < S ->
   case I rem 3 of
     0 -> [mod((Ci - A), 256)] ++ logicHelper(I + 1, Cis, S, A, B, C);
@@ -74,6 +75,6 @@ logicHelper(I, [Ci | Cis], S, A, B, C) when I < S ->
     2 -> [mod((Ci - C), 256)] ++ logicHelper(I + 1, Cis, S, A, B, C)
   end.
 
-mod(0, _) -> 0;
+mod(0, _Y) -> 0;
 mod(X, Y) when X > 0 -> X rem Y;
 mod(X, Y) when X < 0 -> (X rem Y) + Y.
