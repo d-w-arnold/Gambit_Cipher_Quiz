@@ -36,8 +36,8 @@ word_to_match = "Gambit"
 # The cipher text displayed at the above URL is encrypted used a Vigenère (symmetric) cipher, where the key is of
 # length 3 (made up of the variables: a, b and c), and each variable represents an ASCII value.
 #
-# The main function is a brute-force approach (which includes checking for invalid characters) to working out the
-# ASCII values used in place of variables: a, b and c. Where we each variable can be in the range of [0,255].
+# The main function is a brute-force approach to working out the ASCII values used in place
+# of variables: a, b and c. Where each variable can be in the range of [0,255].
 #
 def main():
     # Try all possible combinations of ASCII values for the 3 letter key (abc).

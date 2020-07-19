@@ -29,7 +29,7 @@ using namespace std;
  * length 3 (made up of the variables: a, b and c), and each variable represents an ASCII value.
  *
  * The main function is a brute-force approach to working out the ASCII values used in place
- * of variables: a, b and c. Where we each variable can be in the range of [0,255].
+ * of variables: a, b and c. Where each variable can be in the range of [0,255].
  *
  * @return return value
  */

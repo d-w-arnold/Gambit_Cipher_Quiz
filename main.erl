@@ -26,7 +26,7 @@
 %% length 3 (made up of the variables: a, b and c), and each variable represents an ASCII value.
 %%
 %% The main function is a brute-force approach to working out the ASCII values used in place
-%% of variables: a, b and c. Where we each variable can be in the range of [0,255].
+%% of variables: a, b and c. Where each variable can be in the range of [0,255].
 %%
 %% To execute, run the following command in the same directory: (do not type '$')
 %%
@@ -53,7 +53,7 @@ main() ->
   Combos = [{A, B, C} || A <- lists:seq(0, 255), B <- lists:seq(0, 255), C <- lists:seq(0, 255)],
   logic(Combos, Cipher, CipherSize, WordToMatch).
 
-logic([], _, _, WordToMatch) -> io:fwrite("~nCould not find a decryption containing: ~p~n~n", [WordToMatch]);
+logic([], _, _, WordToMatch) -> io:fwrite("~nCould not find a decryption containing: ~p~n", [WordToMatch]);
 logic([{A, B, C} | Xs], Cipher, CipherSize, WordToMatch) ->
   io:fwrite("a = ~p, b = ~p, c = ~p~n", [A, B, C]),
   Message = logicHelper(0, Cipher, CipherSize, A, B, C),
