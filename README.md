@@ -4,8 +4,8 @@ These are my solutions to the Gambit Cipher Quiz, in order to apply for a job wi
 
 https://gambitresearch.com/quiz/
 
-C++ Solution: `main.cpp`
+C++ Solution: `./main.cpp`
 
-Python Solution: `main.py`
+Python Solution: `./main.py`
 
-Erlang Solution: `main.erl`
+Erlang Solution: `./main.erl`
