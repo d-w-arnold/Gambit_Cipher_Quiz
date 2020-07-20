@@ -12,6 +12,7 @@ cipher_size = len(cipher)
 word_to_match = "Gambit"
 
 
+#
 # Solution to Gambit Quiz, in order to apply for a job with Gambit Research.
 #
 # https://gambitresearch.com/quiz/
